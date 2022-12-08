@@ -1,3 +1,5 @@
+import { Navigate } from "react-router-dom";
+
 import { Avatar } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -11,6 +13,18 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 
 const Login =()=>{
+
+   
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+     
+    };
+  
+ 
+
+
+
     return(
         <Container maxWidth="xs">
           <CssBaseline/>
@@ -22,16 +36,18 @@ const Login =()=>{
         <Typography component ="h1" variant="h5">
             Sign In
         </Typography>
-        <Box>
+        <Box onSubmit ={handleSubmit}>
             <TextField
             margin= "normal"
             label="User"
             fullWidth
             autoFocus
-            id="User"/>
+            id="User"
+            name="User"/>
 
              <TextField
              id="password"
+             name="pass"
             margin= "normal"
             label="Password"
             type="password"
@@ -41,6 +57,7 @@ const Login =()=>{
             control={<Checkbox color="green"/>}
             label="Remember me"/> */}
             <Button type="submit" fullWidth variant="contained">
+                
                 Login
             </Button>
         </Box>
