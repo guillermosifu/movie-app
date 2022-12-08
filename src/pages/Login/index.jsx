@@ -1,5 +1,7 @@
-import { Navigate } from "react-router-dom";
 
+
+import { Navigate } from "react-router-dom";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Avatar } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -14,6 +16,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 const Login =()=>{
 
+    
    
 
     const handleSubmit = (event) => {
@@ -31,7 +34,7 @@ const Login =()=>{
           <Box sx={{marginTop:8,
         display:"flex", flexDirection:"column",alignItems:"center"}}>
         <Avatar sx={{m:2,bgcolor:"red"}}>
-            {/* falta el icon */}
+          <LockOutlinedIcon/>
         </Avatar>
         <Typography component ="h1" variant="h5">
             Sign In
@@ -53,9 +56,7 @@ const Login =()=>{
             type="password"
             fullWidth
             autoFocus/>
-            {/* <FormControlLabel
-            control={<Checkbox color="green"/>}
-            label="Remember me"/> */}
+           
             <Button type="submit" fullWidth variant="contained">
                 
                 Login

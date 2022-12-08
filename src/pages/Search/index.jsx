@@ -15,12 +15,12 @@ import React from "react";
 const Search = () => {
   return (
     <Box>
-      <Container>
+      <Container maxWidth = "sm">
         <Grid container mt={6}>
           <Grid item xs={12}>
             <Card>
               <CardContent>
-                <Typography>OMDB Search</Typography>
+                <Typography variant ="h2">OMDB Search</Typography>
                 <Stack mt="2" direction="row" justifyContent="space-between" spacing={3}>
                 <TextField 
                 label="Movie or tv Show"
