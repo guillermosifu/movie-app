@@ -1,7 +1,7 @@
 //la lista de users  esta en config
-import Config from "../config";
-import { createContext,useState } from "react";
 
+import { createContext,useState } from "react";
+import Config from "../config";
 //este metodo es el que llevara la info de componente a otro ....!
 export const AuthContext = createContext();
 
@@ -23,10 +23,19 @@ function login (username,pass){
     }
     return false;
 }
+function logout() {
+    localStorage.removeItem("movieapp.user");
+    setUser({});
+    window.location.href = "/";
+}
+
+function isAuth() {
+    return user.name ? true : false;
+}
 
 return(
     // nuevo padreee  ... 
-    <AuthContext.Provider value ={{user,login}}>
+    <AuthContext.Provider value ={{user,login,logout,isAuth}}>
         {children}
     </AuthContext.Provider>
 );

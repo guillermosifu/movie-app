@@ -1,5 +1,5 @@
-
-
+import { useContext } from "react";
+import {AuthContext} from "../../context/AuthContext"
 import { Navigate } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Avatar } from "@mui/material";
@@ -12,59 +12,67 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 
+const Login = () => {
+ const {login,isAuth}= useContext(AuthContext)
 
-
-const Login =()=>{
-
-    
-   
-
-    const handleSubmit = (event) => {
-      event.preventDefault();
-     
-    };
   
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData (event.currentTarget)
+   login(data.get("user"),data.get("pass"))
+  };
+
+  if(isAuth()){
+    return <Navigate to="/search"/>
+  }
  
 
-
-
-    return(
-        <Container maxWidth="xs">
-          <CssBaseline/>
-          <Box sx={{marginTop:8,
-        display:"flex", flexDirection:"column",alignItems:"center"}}>
-        <Avatar sx={{m:2,bgcolor:"red"}}>
-          <LockOutlinedIcon/>
+  return (
+    <Container maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar sx={{ m: 2, bgcolor: "red" }}>
+          <LockOutlinedIcon />
         </Avatar>
-        <Typography component ="h1" variant="h5">
-            Sign In
+        <Typography component="h1" variant="h5">
+          Sign In
         </Typography>
-        <Box onSubmit ={handleSubmit}>
-            <TextField
-            margin= "normal"
-            label="User"
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
             fullWidth
+            id="user"
+            label="User"
+            name="user"
             autoFocus
-            id="User"
-            name="User"/>
+          />
 
-             <TextField
-             id="password"
-             name="pass"
-            margin= "normal"
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="pass"
             label="Password"
             type="password"
-            fullWidth
-            autoFocus/>
-           
-            <Button type="submit" fullWidth variant="contained">
-                
-                Login
-            </Button>
+            id="password"
+            autoComplete="current-password"
+          />
+
+          <Button type="submit" onSubmit={handleSubmit} fullWidth variant="contained">
+            Login
+          </Button>
         </Box>
-          </Box>
-        </Container>
-    )
-}
+      </Box>
+    </Container>
+  );
+};
 
 export default Login;
