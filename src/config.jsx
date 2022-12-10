@@ -17,6 +17,7 @@ export const authUsers =[
 		username: "guillermo",
 		name: "Guillermo Sifuentes",
 		pass: "1234",
+		
 	},
 	{
 		id: "1003",

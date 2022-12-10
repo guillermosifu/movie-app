@@ -9,11 +9,29 @@ import {
   Stack,
   Button
 } from "@mui/material";
-
+import { useState } from "react";
+import{useNavigate} from "react-router-dom"
+import MenuBar from "../../components/MenuBar";
 import React from "react";
 
 const Search = () => {
+const [searchText,setSearchText] = useState("")
+const history = useNavigate()
+
+function searchInput (event){
+setSearchText(event.target.value)
+}
+
+function searchButton (){
+  if(searchTex ==="") return;
+  history(`/search/${searchText}`);
+}
+
+
+
   return (
+    <>
+    <MenuBar/>
     <Box>
       <Container maxWidth = "sm">
         <Grid container mt={6}>
@@ -24,8 +42,9 @@ const Search = () => {
                 <Stack mt="2" direction="row" justifyContent="space-between" spacing={3}>
                 <TextField 
                 label="Movie or tv Show"
-                fullWidth/>
-                <Button variant="contained" fullWidth>
+                fullWidth
+                onChange={searchInput}/>
+                <Button variant="contained" fullWidth onClick={searchButton}>
                   Search
                 </Button>
                 </Stack>
@@ -35,6 +54,8 @@ const Search = () => {
         </Grid>
       </Container>
     </Box>
+   
+    </>
   );
 };
 
